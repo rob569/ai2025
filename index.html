@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Help Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Request Help</h2>
+        <form id="helpForm">
+            <label for="name">Student Name:</label>
+            <input type="text" id="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            
+            <label for="issue">Describe Your Issue:</label>
+            <textarea id="issue" rows="4" required></textarea>
+            
+            <label for="appointment">Preferred Appointment Time:</label>
+            <input type="datetime-local" id="appointment" required>
+            
+            <button type="submit">Submit Request</button>
+        </form>
+        <p id="confirmation" style="color: green; display: none;">Your request has been submitted!</p>
+    </div>
+    
+    <script>
+        document.getElementById('helpForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('confirmation').style.display = 'block';
+            this.reset();
+        });
+    </script>
+</body>
+</html>
