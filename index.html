@@ -37,6 +37,7 @@
 <body>
     <div class="container">
         <h2>Rate a Park</h2>
+        <label for="state">Select a State:</label>
         <select id="state">
             <option value="">Select a State</option>
             <option value="Alabama">Alabama</option>
@@ -50,7 +51,11 @@
             <option value="Florida">Florida</option>
             <option value="Georgia">Georgia</option>
         </select>
+        
+        <label for="parkName">Enter Park Name:</label>
         <input type="text" id="parkName" placeholder="Enter park name" required>
+        
+        <label for="rating">Rate the Park (1 = Worst, 5 = Best):</label>
         <select id="rating">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -58,6 +63,7 @@
             <option value="4">4</option>
             <option value="5">5</option>
         </select>
+        
         <button onclick="submitRating()">Submit</button>
         <div class="ratings" id="ratingsList"></div>
     </div>
