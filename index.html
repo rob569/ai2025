@@ -3,74 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Help Request</title>
+    <title>Park Rating App</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
+            text-align: center;
+            margin: 20px;
         }
         .container {
             max-width: 400px;
-            background: white;
-            padding: 20px;
             margin: auto;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
         }
-        label {
-            font-weight: bold;
-        }
-        input, textarea, select {
+        select, input, button {
             width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        .ratings {
+            margin-top: 20px;
+        }
+        .rating-item {
+            background: #f4f4f4;
             padding: 10px;
             margin-top: 5px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
             border-radius: 5px;
-        }
-        button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px;
-            width: 100%;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #218838;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Request Help</h2>
-        <form id="helpForm">
-            <label for="name">Student Name:</label>
-            <input type="text" id="name" required>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" required>
-            
-            <label for="issue">Describe Your Issue:</label>
-            <textarea id="issue" rows="4" required></textarea>
-            
-            <label for="appointment">Preferred Appointment Time:</label>
-            <input type="datetime-local" id="appointment" required>
-            
-            <button type="submit">Submit Request</button>
-        </form>
-        <p id="confirmation" style="color: green; display: none;">Your request has been submitted!</p>
+        <h2>Rate a Park</h2>
+        <select id="state">
+            <option value="">Select a State</option>
+            <option value="Alabama">Alabama</option>
+            <option value="Alaska">Alaska</option>
+            <option value="Arizona">Arizona</option>
+            <option value="Arkansas">Arkansas</option>
+            <option value="California">California</option>
+            <option value="Colorado">Colorado</option>
+            <option value="Connecticut">Connecticut</option>
+            <option value="Delaware">Delaware</option>
+            <option value="Florida">Florida</option>
+            <option value="Georgia">Georgia</option>
+        </select>
+        <input type="text" id="parkName" placeholder="Enter park name" required>
+        <select id="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button onclick="submitRating()">Submit</button>
+        <div class="ratings" id="ratingsList"></div>
     </div>
-    
+
     <script>
-        document.getElementById('helpForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            document.getElementById('confirmation').style.display = 'block';
-            this.reset();
-        });
+        function submitRating() {
+            const state = document.getElementById("state").value;
+            const parkName = document.getElementById("parkName").value.trim();
+            const rating = document.getElementById("rating").value;
+            
+            if (!state || !parkName) {
+                alert("Please select a state and enter a park name.");
+                return;
+            }
+            
+            const ratingsList = document.getElementById("ratingsList");
+            const ratingEntry = document.createElement("div");
+            ratingEntry.classList.add("rating-item");
+            ratingEntry.textContent = `${parkName} in ${state} - Rating: ${rating}/5`;
+            ratingsList.appendChild(ratingEntry);
+            
+            document.getElementById("state").value = "";
+            document.getElementById("parkName").value = "";
+            document.getElementById("rating").value = "1";
+        }
     </script>
 </body>
 </html>
